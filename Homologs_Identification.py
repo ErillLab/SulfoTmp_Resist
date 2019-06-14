@@ -4,7 +4,7 @@
 
 # Load the necessary modules
 
-import warnings
+import warnings, os
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Emboss.Applications import NeedleCommandline
 with warnings.catch_warnings():
