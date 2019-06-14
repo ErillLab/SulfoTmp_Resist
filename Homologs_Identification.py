@@ -54,7 +54,7 @@ def remove_similars(ident):
 
     # Input multi-seq FASTA format
 
-    validated_sequence, validatedid = [], []
+    validated_sequence, validated_id = [], []
     for record in SeqIO.parse("../input.fasta", "fasta"):
         validated_sequence.append(record.seq)
         validated_id.append(record.id.split(" ")[0])
