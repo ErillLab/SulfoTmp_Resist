@@ -5,15 +5,13 @@
 # Load the necessary modules
 
 
-import warnings
+import warnings, json
 from Bio.SeqUtils import GC
 with warnings.catch_warnings():
     warnings.simplefilter('ignore')
     from Bio import SeqIO, Entrez
 
 # Load the configuration file
-    
-import json
 
 with open("test_arg_summary-env.json") as json_conf : 
     conf = json.load(json_conf)
