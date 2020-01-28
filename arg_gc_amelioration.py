@@ -4,7 +4,7 @@
 
 # Load the necessary modules
 
-import warnings, subprocess, random, urllib2, httplib
+import warnings, subprocess, random, urllib2, httplib, json
 from Bio.Blast.Applications import NcbiblastpCommandline
 with warnings.catch_warnings():
     warnings.simplefilter('ignore')
@@ -12,9 +12,16 @@ with warnings.catch_warnings():
 from Bio.SeqUtils import GC
 from StringIO import StringIO
 
+# Load the configuration file
+
+import json
+
+with open("test_arg_gc_amelioration.json") as json_conf : 
+    conf = json.load(json_conf)
+
 ### Tell to NCBI who I am
 
-Entrez.email = ""
+Entrez.email = conf["email"]
 
 def gc_amelioration(infile, outfile, blastpdatabase):
     
@@ -209,3 +216,8 @@ def gc_amelioration(infile, outfile, blastpdatabase):
         subprocess.call(bashCommand.split())
     
     out_handle_F.close()
+
+
+## Run the function
+
+gc_amelioration(conf["infile"], conf["outfile"], conf["blastpdatabase"])
