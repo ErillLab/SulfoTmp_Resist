@@ -14,8 +14,6 @@ from StringIO import StringIO
 
 # Load the configuration file
 
-import json
-
 with open("test_arg_gc_amelioration.json") as json_conf : 
     conf = json.load(json_conf)
 
