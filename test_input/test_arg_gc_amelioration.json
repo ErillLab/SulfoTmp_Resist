@@ -1,0 +1,8 @@
+{
+
+    "email": "miquel.sanchez.osuna@uab.cat",
+    "infile":"/home/micromol/test_arg_gc_amelioration.fasta",
+    "outfile":"/home/micromol/test_arg_gc_amerlioration_output.txt",
+    "blastpdatabase":"/home/micromol/MGE_CompleteGenome"
+
+}

@@ -1,0 +1,6 @@
+{
+
+    "infile": "/home/micromol/test_arg_origin_mwtest.fasta",
+    "outfile":"/home/micromol/test_arg_origin_mwtest_output.txt",
+    "arg_source":"Alcanivorax_pacificus"
+}
