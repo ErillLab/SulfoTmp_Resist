@@ -11,16 +11,24 @@ with warnings.catch_warnings():
     warnings.simplefilter('ignore')
     from Bio import SeqIO, Entrez
 
+# Load the configuration file
+    
+import json
+
+with open("test_arg_summary-env.json") as json_conf : 
+    conf = json.load(json_conf)
+
+
 # Tell to NCBI who I am
 
-Entrez.email = ""
+Entrez.email = conf["email"]
 
 
 ## Protein info, genetic environment & GC% computation
 
 # Input: Txt file containing Protein Ids
 
-file_name = ""
+file_name = conf["idsfile"]
 
 with open(file_name) as f:
     ids_array = f.readlines()
@@ -97,3 +105,8 @@ def gene_env(flanking_region):
                             continue
         
         print protein_info[ids_CDS][0]+","+ids_CDS+","+protein_info[ids_CDS][2]+","+",".join(product)
+
+# Run the functions
+        
+gene_summary()
+gene_env(conf["flanking_region"])
