@@ -4,17 +4,20 @@
 
 # Load the necessary modules
 
-import warnings
+import warnings, json
 with warnings.catch_warnings():
     warnings.simplefilter('ignore')
     from Bio import Entrez
 from Bio.Blast import NCBIWWW, NCBIXML
 
+# Load the configuration file
 
+with open("test_arg_origin_detection.json") as json_conf : 
+    conf = json.load(json_conf)
 
 # Tell to NCBI who I am
 
-Entrez.email = ""
+Entrez.email = conf["email"]
 
 def arg_origin_detection(idsfile,outfile,evalue):
     
@@ -36,7 +39,7 @@ def arg_origin_detection(idsfile,outfile,evalue):
         
         E_VALUE_THRESH = evalue
     
-        hit_id, hit_description, hit_seq, evalue = [], [], [], []
+        hit_id, hit_description, evalue = [], [], []
         
         for blast_record in blast_records:
             for alignment in blast_record.alignments:
@@ -60,3 +63,7 @@ def arg_origin_detection(idsfile,outfile,evalue):
                         out_handle.write(query+"\t"+hit_id[i]+"\t"+hit_description[i]+"\n")
         
     out_handle.close()
+
+# Run the function
+
+arg_origin_detection(conf["idsfile"],conf["outfile"],conf["evalue"])
