@@ -9,6 +9,13 @@ with warnings.catch_warnings():
 from Bio.Emboss.Applications import NeedleCommandline
 from StringIO import StringIO
 
+# Load the configuration file
+
+import json
+
+with open("test_arg_origin_mwtest.json") as json_conf : 
+    conf = json.load(json_conf)
+
 
 def arg_origin_mwtest(infile, outfile, arg_source):
 
@@ -55,3 +62,7 @@ def arg_origin_mwtest(infile, outfile, arg_source):
     out_handle.write("Mann-Whitney U Test, p-value = "+str(pVal)+"\n")
     
     out_handle.close()
+
+# Run the function
+    
+arg_origin_mwtest(conf["infile"], conf["outfile"], conf["arg_source"])
