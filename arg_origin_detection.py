@@ -19,12 +19,12 @@ with open("test_arg_origin_detection.json") as json_conf :
 
 Entrez.email = conf["email"]
 
-def arg_origin_detection(idsfile,outfile,evalue):
+def arg_origin_detection(idsfile,outfile,e_value):
     
     '''
     idsfile: TBLASTN Query Protein Id;
     outfile: output file;
-    evalue: expected number of chance matches for tblastn;
+    e_value: expected number of chance matches for tblastn;
     '''
     
     with open(idsfile) as f:
@@ -37,7 +37,7 @@ def arg_origin_detection(idsfile,outfile,evalue):
         result_handle = NCBIWWW.qblast('tblastn', 'nt', query, format_type="XML", hitlist_size= 500, alignments = 500, descriptions = 500, entrez_query="complete[Title] NOT plasmid[Title] NOT vector[Title] NOT integron[Title] NOT transposon[Title] NOT phage[Title] NOT virus[Title] NOT cds[Title] NOT island[Title] NOT conjugati[Title]")
         blast_records = NCBIXML.parse(result_handle)
         
-        E_VALUE_THRESH = evalue
+        E_VALUE_THRESH = e_value
     
         hit_id, hit_description, evalue = [], [], []
         
